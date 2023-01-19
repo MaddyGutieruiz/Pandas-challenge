@@ -51,22 +51,25 @@ overall_passing_rate = passing_math_reading_count /  float(student_count) * 100
 overall_passing_rate
 
 # Create a high-level snapshot of the district's key metrics in a DataFrame
-district_summary = pd.DataFrame({"Total Students": student_count,
+district_summary = pd.DataFrame([{"Total Students": student_count,
                                  "Total Budget":total_budget.sum(),
                                  "Average Math Score": average_math_score, 
                                  "Average Reading Score": average_reading_score, 
                                  "% Passing Math": passing_math_percentage, 
                                  "% Passing Reading": passing_reading_percentage, 
-                                 "% Overall Passing": overall_passing_rate})
+                                 "% Overall Passing": overall_passing_rate}])
 
 # Formatting
 district_summary["Total Students"] = district_summary["Total Students"].map("{:,}".format)
 district_summary["Total Budget"] = district_summary["Total Budget"].map("${:,.2f}".format)
-district_summary["Average Math Score"] = district_summary["Average Math Score"].map("${:,.3f}".format)
-district_summary["Average Reading Score"] = district_summary["Average Reading Score"].map("${:,.4f}".format)
-district_summary["% Passing Math"] = district_summary["% Passing Math"].map("${:,.5f}".format)
-district_summary["% Passing Reading"] = district_summary["% Passing Reading"].map("${:,.6f}".format)
-district_summary["% Overall Passing"] = district_summary["% Overall Passing"].map("${:,.7f}".format)
+district_summary["Average Math Score"] = district_summary["Average Math Score"].map("${:,.1f}".format)
+district_summary["Average Reading Score"] = district_summary["Average Reading Score"].map("${:,.1f}".format)
+district_summary["% Passing Math"] = district_summary["% Passing Math"].map("${:,.0f}".format)
+district_summary["% Passing Reading"] = district_summary["% Passing Reading"].map("${:,.0f}".format)
+district_summary["% Overall Passing"] = district_summary["% Overall Passing"].map("${:,.0f}".format)
+
+# Display the DataFrame
+district_summary
 
 # Display the DataFrame
 district_summary
